@@ -16,7 +16,7 @@ func TestSetns(t *testing.T) {
 	if err != nil {
 		t.Errorf("expected nil, got %v", err)
 	}
-	stats, err := ns.Stats()
+	stats, err := netstat.Stats()
 	if err != nil {
 		t.Errorf("expected nil, got %v", err)
 	}
@@ -29,18 +29,9 @@ func TestSetns(t *testing.T) {
 	if stats[1].Interface != "lo" {
 		t.Errorf("expected stats[1].Interface == lo, got %v", stats[1].Interface)
 	}
-
 	err = ns.Close()
 	if err != nil {
 		t.Errorf("expected nil, got %v", err)
-	}
-
-	stats, err = ns.Stats()
-	if err == nil {
-		t.Errorf("expected %v, got %v", NamespaceCloseError, err)
-	}
-	if stats != nil {
-		t.Errorf("expected nil, got %v", stats)
 	}
 }
 
