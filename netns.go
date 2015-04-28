@@ -16,9 +16,13 @@ type NetworkNsHandler struct {
 }
 
 func Setns(pid string) (*NetworkNsHandler, error) {
+	return SetnsFromProcDir("/proc/" + pid)
+}
+
+func SetnsFromProcDir(procDir string) (*NetworkNsHandler, error) {
 	var err error
 	h := &NetworkNsHandler{}
-	h.ns, err = os.Open("/proc/" + pid + "/ns/net")
+	h.ns, err = os.Open(procDir + "/ns/net")
 	if err != nil {
 		return nil, err
 	}
