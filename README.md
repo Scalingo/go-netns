@@ -1,5 +1,7 @@
-Network Namespace with Go
-=========================
+> [!CAUTION]
+> **This library was deprecated and archived on the 1st of December 2025.**
+
+# [DEPRECATED] Network Namespace with Go
 
 Wrapper around the `setns()` syscall to switch your application in the network
 namespace of another process.
